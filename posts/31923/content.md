@@ -9,3 +9,5 @@ this is more body text.
 __strong__
 
 *don't know what this does*
+
+![alt text](lowpoly_2_right_grey.png "apple")

@@ -38,7 +38,7 @@ impl PostEntry {
     }
 
     pub fn is_ok(&self) -> bool {
-        self.content & self.ok_meta
+        self.content && self.ok_meta
     }
 }
 
@@ -56,8 +56,6 @@ fn loop_projects(post_entry: DirEntry) -> PostEntry {
     let html_path = format!("{}/content.html", entry.dir_name);
     let post_entry = fs::read_dir(post_entry.path()).unwrap();
 
-    
-
     for candidate in post_entry {
         if let Ok(file) = candidate {
             if file.file_name() == "content.md" {
@@ -68,7 +66,7 @@ fn loop_projects(post_entry: DirEntry) -> PostEntry {
                         file.path().into_os_string()
                     )
                     .unwrap());
-
+                let html_content = add_server_prefix(html_content, entry.dir_name.clone());
                 let mut new_file = fs::File::create(&html_path)
                     .expect("Could not create html file");
                 new_file.write_all(html_content.as_bytes())
@@ -87,6 +85,36 @@ fn loop_projects(post_entry: DirEntry) -> PostEntry {
 
     entry
 }
+
+static IMG_SERVER_PREFIX: &str = "https://orca-app-8uzme.ondigitalocean.app";
+
+fn recursion(html_string: String, mut html_bits: Vec<String>, path_prefix: String) -> Vec<String> {
+    match html_string.find("src=") {
+        Some(index) => {
+            let (one, two) = html_string.split_at(index + 5usize);
+            let mut one = one.to_string();
+            one.push_str(&path_prefix);
+            html_bits.push(one);
+            html_bits = recursion(two.to_string(), html_bits, path_prefix);
+        }
+        None => html_bits.push(html_string),
+    };
+
+    html_bits
+}
+
+fn add_server_prefix(html_string: String, dir_name: String) -> String {
+    let path_prefix = format!("{}/{}/", IMG_SERVER_PREFIX, dir_name);
+    let mut html_bits: Vec<String> = Vec::new();
+    html_bits = recursion(html_string, html_bits, path_prefix);
+    let mut html_final = String::new();
+    for bit in html_bits {
+        html_final.push_str(&bit);
+    }
+
+    html_final
+}
+
 // we need a terminal app that writes the metadata based on the content of each directory in /posts
 // create list of occupied folders: vec<String>
 // for dir in /posts

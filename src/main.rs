@@ -2,8 +2,15 @@ use std::fs;
 use std::fs::DirEntry;
 use std::io::Write;
 
+#[derive(serde::Deserialize, serde::Serialize)]
+struct Manifest {
+    pinned_projects: Vec<String>,
+    pinned_posts: Vec<String>,
+    recent_posts: Vec<String>,
+    all: Vec<String>
+}
+
 fn main() {
-    //println!("{}", markdown::to_html("![alt text](lowpoly_2_right_grey.png \"apple\")"));
     let mut post_list: Vec<PostEntry> = Vec::new();
 
 
@@ -24,6 +31,19 @@ fn main() {
     for entry in post_list.iter().filter(|entry| !entry.is_ok()) {
         println!("{}", entry.dir_name);
     }
+
+    let manifest_string = fs::read_to_string(
+        "posts/manifest.yaml".to_string()).unwrap();
+    let mut manifest_content = serde_yaml::from_str::<Manifest>(&manifest_string).unwrap();
+    let all: Vec<String> = post_list
+        .iter()
+        .filter(|entry| !entry.is_ok())
+        .map(|post_entry| post_entry.dir_name.clone())
+        .collect();
+    manifest_content.all = all;
+    let manifest_write = serde_yaml::to_string::<Manifest>(&manifest_content).unwrap();
+
+    fs::write("posts/manifest.yaml", manifest_write).expect("Could not write manifest");
 }
 
 pub struct PostEntry {
@@ -60,7 +80,6 @@ fn loop_projects(post_entry: DirEntry) -> PostEntry {
         if let Ok(file) = candidate {
             if file.file_name() == "content.md" {
             
-                //println!("{:?}", file.path().as_os_str());
                 let html_content = markdown::to_html(
                     &fs::read_to_string(
                         file.path().into_os_string()

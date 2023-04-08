@@ -68,7 +68,8 @@ pub struct PostMetadata {
     pub tagline: String,
     pub date: String,
     pub tags: Vec<String>,
-    pub images: Vec<String>,
+    pub thumbnails: Vec<String>,
+    pub splash_image: String,
 }
 
 fn loop_projects(post_entry: DirEntry) -> PostEntry {

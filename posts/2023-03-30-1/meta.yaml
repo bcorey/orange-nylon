@@ -1,6 +1,7 @@
 title: "Building this Site in Rust"
-tagline: "One of the experiences of all time"
+tagline: "Adventures in masochism"
 date: "2023-03-30"
 tags: ["web", "code", "UI"]
-images: [""]
+thumbnails: [""]
+splash_image: ""
 content_type: "post"

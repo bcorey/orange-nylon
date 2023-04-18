@@ -2,5 +2,6 @@ title: "NYT Homepage"
 tagline: "ctrl-a ctrl-c go brrr"
 date: "2023-03-26"
 tags: ["news", "theft"]
-thumbnails: [""]
-splash_image: ""
+thumbnails: []
+is_pinned: false
+content_type: "Post"

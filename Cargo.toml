@@ -10,3 +10,4 @@ serde_yaml = "0.9.19"
 serde = { version = "1", features = ["derive"] }
 log = "0.4"
 markdown = "1.0.0-alpha.7"
+time = "0.3.20"

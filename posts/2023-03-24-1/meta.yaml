@@ -1,6 +1,7 @@
 title: "Mushroom Macros"
 tagline: "demo gallery"
 date: "2023-03-24"
-tags: ["photo", "3D"]
+tags: ["photo", "macro"]
 thumbnails: ["demo-image-mushroom.jpg", "demo-stump.jpg", "demo-log.jpg"]
-splash_image: ""
+is_pinned: true
+content_type: "Project"

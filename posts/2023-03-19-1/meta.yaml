@@ -2,5 +2,6 @@ title: "Initial Test"
 tagline: "let's see what this html stuff can do"
 date: "2023-03-19"
 tags: ["html"]
-thumbnails: ["dummy"]
-splash_image: ""
+thumbnails: []
+is_pinned: false
+content_type: "Post"

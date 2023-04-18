@@ -2,6 +2,6 @@ title: "Building this Site in Rust"
 tagline: "Not quite RIIR"
 date: "2023-03-30"
 tags: ["web", "code", "UI"]
-thumbnails: [""]
-splash_image: ""
-content_type: "post"
+thumbnails: []
+is_pinned: false
+content_type: "Post"

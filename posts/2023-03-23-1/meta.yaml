@@ -1,6 +1,7 @@
 title: "Verizon Hut"
 tagline: "demo gallery"
 date: "2023-03-23"
-tags: ["photo", "web"]
+tags: ["photo", "nature"]
 thumbnails: ["demo-image-hut.jpg", "demo-image-crows.jpg", "demo-image-electrical.jpg"]
-splash_image: ""
+is_pinned: true
+content_type: "Project"

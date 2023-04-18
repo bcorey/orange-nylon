@@ -1,6 +1,7 @@
 title: "Trees"
 tagline: "demo gallery"
 date: "2023-03-25"
-tags: ["animation", "writing"]
+tags: ["animation", "trip"]
 thumbnails: ["demo-image-trees.jpg", "demo-tree-valley.jpg", "demo-switzer.jpg"]
-splash_image: ""
+is_pinned: true
+content_type: "Project"

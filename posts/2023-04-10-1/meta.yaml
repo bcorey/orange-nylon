@@ -1,7 +1,7 @@
-title: "Little house on the internet"
-tagline: "I have a website now"
+title: "I Have a Website Now"
+tagline: "Little house on the internet"
 date: "2023-04-10"
-tags: ["web", "code"]
-thumbnails: [""]
-splash_image: ""
-content_type: "post"
+tags: ["web", "news"]
+thumbnails: []
+is_pinned: false
+content_type: "Post"

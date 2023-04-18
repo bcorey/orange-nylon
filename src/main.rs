@@ -5,19 +5,15 @@ use std::io::Write;
 #[derive(serde::Deserialize, serde::Serialize)]
 struct Manifest {
     pub bio: Vec<(String, PostMetadata)>,
-    pub pinned_projects: Vec<(String, PostMetadata)>,
-    pub pinned_posts: Vec<(String, PostMetadata)>,
-    pub recent_posts: Vec<(String, PostMetadata)>,
-    pub all: Vec<String>
+    pub pinned: Vec<(String, PostMetadata)>,
+    pub all: Vec<(String, PostMetadata)>,
 }
 
 impl Manifest {
     pub fn new() -> Self {
         Manifest {
             bio: Vec::new(),
-            pinned_projects: Vec::new(),
-            pinned_posts: Vec::new(),
-            recent_posts: Vec::new(),
+            pinned: Vec::new(),
             all: Vec::new(),
         }
     }
@@ -52,24 +48,17 @@ fn main() {
         .collect();
     manifest_content.bio = bio;
 
-    let pinned_projects: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
+    let pinned: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
         .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
-        .filter(|(_path, post_meta)| post_meta.is_pinned && post_meta.content_type == ContentType::Project)
+        .filter(|(_path, post_meta)| post_meta.is_pinned)
         .collect();
-    manifest_content.pinned_projects = pinned_projects;
+    manifest_content.pinned = pinned;
 
-    let pinned_posts: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
+    let all: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
         .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
-        .filter(|(_path, post_meta)| post_meta.is_pinned && post_meta.content_type == ContentType::Post)
-        .collect();
-    manifest_content.pinned_posts = pinned_posts;
-
-    let all: Vec<String> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| {
-            post_entry.dir_name.clone().replace("./posts/", "")
-        })
         .collect();
     manifest_content.all = all;
+
     let manifest_write = serde_yaml::to_string::<Manifest>(&manifest_content).unwrap();
     fs::write("./posts/manifest.yaml", manifest_write).expect("Could not write manifest");
 }

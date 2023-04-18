@@ -47,19 +47,19 @@ fn main() {
     let mut manifest_content = Manifest::new();
 
     let bio: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| (post_entry.dir_name.clone(), post_entry.meta_value.as_ref().unwrap().clone()))
+        .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
         .filter(|(_path, post_meta)| post_meta.content_type == ContentType::Note && post_meta.tags.contains(&"bio".to_string()))
         .collect();
     manifest_content.bio = bio;
 
     let pinned_projects: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| (post_entry.dir_name.clone(), post_entry.meta_value.as_ref().unwrap().clone()))
+        .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
         .filter(|(_path, post_meta)| post_meta.is_pinned && post_meta.content_type == ContentType::Project)
         .collect();
     manifest_content.pinned_projects = pinned_projects;
 
     let pinned_posts: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| (post_entry.dir_name.clone(), post_entry.meta_value.as_ref().unwrap().clone()))
+        .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
         .filter(|(_path, post_meta)| post_meta.is_pinned && post_meta.content_type == ContentType::Post)
         .collect();
     manifest_content.pinned_posts = pinned_posts;

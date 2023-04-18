@@ -1,61 +1,66 @@
 bio:
-- title: Benjamin Corey
-  tagline: Making software and other things
-  date: 2023-04-10
-  tags:
-  - about
-  - bio
-  thumbnails: []
-  is_pinned: true
-  content_type: Note
+- - ./posts/2023-04-10-2
+  - title: Benjamin Corey
+    tagline: Making software and other things
+    date: 2023-04-10
+    tags:
+    - about
+    - bio
+    thumbnails: []
+    is_pinned: true
+    content_type: Note
 pinned_projects:
-- title: Verizon Hut
-  tagline: demo gallery
-  date: 2023-03-23
-  tags:
-  - photo
-  - nature
-  thumbnails:
-  - demo-image-hut.jpg
-  - demo-image-crows.jpg
-  - demo-image-electrical.jpg
-  is_pinned: true
-  content_type: Project
-- title: Trees
-  tagline: demo gallery
-  date: 2023-03-25
-  tags:
-  - animation
-  - trip
-  thumbnails:
-  - demo-image-trees.jpg
-  - demo-tree-valley.jpg
-  - demo-switzer.jpg
-  is_pinned: true
-  content_type: Project
-- title: Mushroom Macros
-  tagline: demo gallery
-  date: 2023-03-24
-  tags:
-  - photo
-  - macro
-  thumbnails:
-  - demo-image-mushroom.jpg
-  - demo-stump.jpg
-  - demo-log.jpg
-  is_pinned: true
-  content_type: Project
+- - ./posts/2023-03-23-1
+  - title: Verizon Hut
+    tagline: demo gallery
+    date: 2023-03-23
+    tags:
+    - photo
+    - nature
+    thumbnails:
+    - demo-image-hut.jpg
+    - demo-image-crows.jpg
+    - demo-image-electrical.jpg
+    is_pinned: true
+    content_type: Project
+- - ./posts/2023-03-25-1
+  - title: Trees
+    tagline: demo gallery
+    date: 2023-03-25
+    tags:
+    - animation
+    - trip
+    thumbnails:
+    - demo-image-trees.jpg
+    - demo-tree-valley.jpg
+    - demo-switzer.jpg
+    is_pinned: true
+    content_type: Project
+- - ./posts/2023-03-24-1
+  - title: Mushroom Macros
+    tagline: demo gallery
+    date: 2023-03-24
+    tags:
+    - photo
+    - macro
+    thumbnails:
+    - demo-image-mushroom.jpg
+    - demo-stump.jpg
+    - demo-log.jpg
+    is_pinned: true
+    content_type: Project
 pinned_posts:
-- title: The Bee Movie Script
-  tagline: Article retrieval test. Via script-o-rama.com
-  date: 2023-03-22
-  tags:
-  - bees
-  - society
-  - art
-  thumbnails: []
-  is_pinned: true
-  content_type: Post
+- - ./posts/2023-03-22-1
+  - title: The Bee Movie Script
+    tagline: Article retrieval test. Via script-o-rama.com
+    date: 2023-03-22
+    tags:
+    - bees
+    - society
+    - art
+    thumbnails: []
+    is_pinned: true
+    content_type: Post
 recent_posts: []
 all:
 - 2023-04-10-1

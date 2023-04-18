@@ -4,11 +4,11 @@ use std::io::Write;
 
 #[derive(serde::Deserialize, serde::Serialize)]
 struct Manifest {
-    bio: Vec<PostMetadata>,
-    pinned_projects: Vec<PostMetadata>,
-    pinned_posts: Vec<PostMetadata>,
-    recent_posts: Vec<PostMetadata>,
-    all: Vec<String>
+    pub bio: Vec<(String, PostMetadata)>,
+    pub pinned_projects: Vec<(String, PostMetadata)>,
+    pub pinned_posts: Vec<(String, PostMetadata)>,
+    pub recent_posts: Vec<(String, PostMetadata)>,
+    pub all: Vec<String>
 }
 
 impl Manifest {
@@ -46,21 +46,21 @@ fn main() {
 
     let mut manifest_content = Manifest::new();
 
-    let bio: Vec<PostMetadata> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| post_entry.meta_value.as_ref().unwrap().clone())
-        .filter(|post_meta| post_meta.content_type == ContentType::Note && post_meta.tags.contains(&"bio".to_string()))
+    let bio: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
+        .map(|post_entry| (post_entry.dir_name.clone(), post_entry.meta_value.as_ref().unwrap().clone()))
+        .filter(|(_path, post_meta)| post_meta.content_type == ContentType::Note && post_meta.tags.contains(&"bio".to_string()))
         .collect();
     manifest_content.bio = bio;
 
-    let pinned_projects: Vec<PostMetadata> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| post_entry.meta_value.as_ref().unwrap().clone())
-        .filter(|post_meta| post_meta.is_pinned && post_meta.content_type == ContentType::Project)
+    let pinned_projects: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
+        .map(|post_entry| (post_entry.dir_name.clone(), post_entry.meta_value.as_ref().unwrap().clone()))
+        .filter(|(_path, post_meta)| post_meta.is_pinned && post_meta.content_type == ContentType::Project)
         .collect();
     manifest_content.pinned_projects = pinned_projects;
 
-    let pinned_posts: Vec<PostMetadata> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| post_entry.meta_value.as_ref().unwrap().clone())
-        .filter(|post_meta| post_meta.is_pinned && post_meta.content_type == ContentType::Post)
+    let pinned_posts: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
+        .map(|post_entry| (post_entry.dir_name.clone(), post_entry.meta_value.as_ref().unwrap().clone()))
+        .filter(|(_path, post_meta)| post_meta.is_pinned && post_meta.content_type == ContentType::Post)
         .collect();
     manifest_content.pinned_posts = pinned_posts;
 

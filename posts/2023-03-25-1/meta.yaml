@@ -3,5 +3,5 @@ tagline: "demo gallery"
 date: "2023-03-25"
 tags: ["animation", "trip"]
 thumbnails: ["demo-image-trees.jpg", "demo-tree-valley.jpg", "demo-switzer.jpg"]
-is_pinned: true
+is_pinned: false
 content_type: "Project"

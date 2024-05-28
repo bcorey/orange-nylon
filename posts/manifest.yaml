@@ -20,19 +20,7 @@ pinned:
     thumbnails: []
     is_pinned: true
     content_type: Note
-- - 2023-03-23-1
-  - title: Verizon Hut
-    tagline: demo gallery
-    date: 2023-03-23
-    tags:
-    - photo
-    - nature
-    thumbnails:
-    - demo-image-hut.jpg
-    - demo-image-crows.jpg
-    - demo-image-electrical.jpg
-    is_pinned: true
-    content_type: Project
+all:
 - - 2023-03-25-1
   - title: Trees
     tagline: demo gallery
@@ -44,43 +32,21 @@ pinned:
     - demo-image-trees.jpg
     - demo-tree-valley.jpg
     - demo-switzer.jpg
-    is_pinned: true
+    is_pinned: false
     content_type: Project
-- - 2023-03-22-1
-  - title: The Bee Movie Script
-    tagline: Article retrieval test. Via script-o-rama.com
-    date: 2023-03-22
-    tags:
-    - bees
-    - society
-    - art
-    thumbnails: []
-    is_pinned: true
-    content_type: Post
-- - 2023-03-24-1
-  - title: Mushroom Macros
+- - 2023-03-23-1
+  - title: Verizon Hut
     tagline: demo gallery
-    date: 2023-03-24
+    date: 2023-03-23
     tags:
     - photo
-    - macro
+    - nature
     thumbnails:
-    - demo-image-mushroom.jpg
-    - demo-stump.jpg
-    - demo-log.jpg
-    is_pinned: true
-    content_type: Project
-all:
-- - 2023-04-10-1
-  - title: I Have a Website Now
-    tagline: Little house on the internet
-    date: 2023-04-10
-    tags:
-    - web
-    - news
-    thumbnails: []
+    - demo-image-hut.jpg
+    - demo-image-crows.jpg
+    - demo-image-electrical.jpg
     is_pinned: false
-    content_type: Post
+    content_type: Project
 - - 2023-04-10-2
   - title: Benjamin Corey
     tagline: Making software and other things
@@ -91,73 +57,6 @@ all:
     thumbnails: []
     is_pinned: true
     content_type: Note
-- - 2023-03-19-1
-  - title: Initial Test
-    tagline: let's see what this html stuff can do
-    date: 2023-03-19
-    tags:
-    - html
-    thumbnails: []
-    is_pinned: false
-    content_type: Post
-- - 2023-03-30-1
-  - title: Building this Site in Rust
-    tagline: Not quite RIIR
-    date: 2023-03-30
-    tags:
-    - web
-    - code
-    - UI
-    thumbnails: []
-    is_pinned: false
-    content_type: Post
-- - 2023-03-23-1
-  - title: Verizon Hut
-    tagline: demo gallery
-    date: 2023-03-23
-    tags:
-    - photo
-    - nature
-    thumbnails:
-    - demo-image-hut.jpg
-    - demo-image-crows.jpg
-    - demo-image-electrical.jpg
-    is_pinned: true
-    content_type: Project
-- - 2023-03-25-1
-  - title: Trees
-    tagline: demo gallery
-    date: 2023-03-25
-    tags:
-    - animation
-    - trip
-    thumbnails:
-    - demo-image-trees.jpg
-    - demo-tree-valley.jpg
-    - demo-switzer.jpg
-    is_pinned: true
-    content_type: Project
-- - 2023-03-26-1
-  - title: NYT Homepage
-    tagline: ctrl-a ctrl-c go brrr
-    date: 2023-03-26
-    tags:
-    - news
-    - theft
-    thumbnails: []
-    is_pinned: false
-    content_type: Post
-- - 2023-03-22-1
-  - title: The Bee Movie Script
-    tagline: Article retrieval test. Via script-o-rama.com
-    date: 2023-03-22
-    tags:
-    - bees
-    - society
-    - art
-    thumbnails: []
-    is_pinned: true
-    content_type: Post
 - - 2023-03-24-1
   - title: Mushroom Macros
     tagline: demo gallery
@@ -169,17 +68,16 @@ all:
     - demo-image-mushroom.jpg
     - demo-stump.jpg
     - demo-log.jpg
-    is_pinned: true
+    is_pinned: false
     content_type: Project
-- - 032023
-  - title: Excellent Eggs
-    tagline: These eggs were better than expected.
-    date: 2023-03-20
+- - 2023-03-30-1
+  - title: Building this Site in Rust
+    tagline: Not quite RIIR
+    date: 2023-03-30
     tags:
-    - butter
-    - toast
-    - art
-    thumbnails:
-    - lowpoly_2_right_grey.png
+    - web
+    - code
+    - UI
+    thumbnails: []
     is_pinned: false
     content_type: Post

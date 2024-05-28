@@ -1,4 +1,4 @@
-use std::{fs};
+use std::fs;
 use std::fs::DirEntry;
 use std::io::Write;
 
@@ -42,20 +42,44 @@ fn main() {
 
     let mut manifest_content = Manifest::new();
 
-    let bio: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
-        .filter(|(_path, post_meta)| post_meta.content_type == ContentType::Note && post_meta.tags.contains(&"bio".to_string()))
+    let bio: Vec<(String, PostMetadata)> = post_list
+        .iter()
+        .filter(|entry| entry.is_ok())
+        .map(|post_entry| {
+            (
+                post_entry.dir_name.clone().replace("./posts/", ""),
+                post_entry.meta_value.as_ref().unwrap().clone(),
+            )
+        })
+        .filter(|(_path, post_meta)| {
+            post_meta.content_type == ContentType::Note
+                && post_meta.tags.contains(&"bio".to_string())
+        })
         .collect();
     manifest_content.bio = bio;
 
-    let pinned: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
+    let pinned: Vec<(String, PostMetadata)> = post_list
+        .iter()
+        .filter(|entry| entry.is_ok())
+        .map(|post_entry| {
+            (
+                post_entry.dir_name.clone().replace("./posts/", ""),
+                post_entry.meta_value.as_ref().unwrap().clone(),
+            )
+        })
         .filter(|(_path, post_meta)| post_meta.is_pinned)
         .collect();
     manifest_content.pinned = pinned;
 
-    let all: Vec<(String, PostMetadata)> = post_list.iter().filter(|entry| entry.is_ok())
-        .map(|post_entry| (post_entry.dir_name.clone().replace("./posts/", ""), post_entry.meta_value.as_ref().unwrap().clone()))
+    let all: Vec<(String, PostMetadata)> = post_list
+        .iter()
+        .filter(|entry| entry.is_ok())
+        .map(|post_entry| {
+            (
+                post_entry.dir_name.clone().replace("./posts/", ""),
+                post_entry.meta_value.as_ref().unwrap().clone(),
+            )
+        })
         .collect();
     manifest_content.all = all;
 
@@ -67,12 +91,17 @@ pub struct PostEntry {
     pub dir_name: String,
     pub content: bool,
     pub ok_meta: bool,
-    pub meta_value: Option<PostMetadata>
+    pub meta_value: Option<PostMetadata>,
 }
 
 impl PostEntry {
     pub fn new(dir_name: String) -> Self {
-        PostEntry { dir_name: dir_name, content: false, ok_meta: false, meta_value: None }
+        PostEntry {
+            dir_name: dir_name,
+            content: false,
+            ok_meta: false,
+            meta_value: None,
+        }
     }
 
     pub fn is_ok(&self) -> bool {
@@ -84,7 +113,7 @@ impl PostEntry {
 pub enum ContentType {
     Post,
     Project,
-    Note
+    Note,
 }
 use std::fmt;
 impl fmt::Display for ContentType {
@@ -96,7 +125,6 @@ impl fmt::Display for ContentType {
         }
     }
 }
-
 
 #[derive(serde::Deserialize, serde::Serialize, Clone)]
 pub struct PostMetadata {
@@ -117,16 +145,13 @@ fn loop_projects(post_entry: DirEntry) -> PostEntry {
     for candidate in post_entry {
         if let Ok(file) = candidate {
             if file.file_name() == "content.md" {
-            
-                let html_content = markdown::to_html(
-                    &fs::read_to_string(
-                        file.path().into_os_string()
-                    )
-                    .unwrap());
+                let html_content =
+                    markdown::to_html(&fs::read_to_string(file.path().into_os_string()).unwrap());
                 let html_content = add_server_prefix(html_content, entry.dir_name.clone());
-                let mut new_file = fs::File::create(&html_path)
-                    .expect("Could not create html file");
-                new_file.write_all(html_content.as_bytes())
+                let mut new_file =
+                    fs::File::create(&html_path).expect("Could not create html file");
+                new_file
+                    .write_all(html_content.as_bytes())
                     .expect("Could not write data to html file");
 
                 entry.content = true;
@@ -138,9 +163,11 @@ fn loop_projects(post_entry: DirEntry) -> PostEntry {
                         let mut_meta_value = meta_value.clone();
                         //mut_meta_value.thumbnails = add_server_prefix_thumbnails(meta_value.thumbnails, entry.dir_name.clone());
                         entry.meta_value = Some(mut_meta_value);
-                        
-                    },
-                    Err(e) => println!("Error reading meta.yaml at {}\nerror: {}", entry.dir_name, e),
+                    }
+                    Err(e) => println!(
+                        "Error reading meta.yaml at {}\nerror: {}",
+                        entry.dir_name, e
+                    ),
                 }
             }
         }

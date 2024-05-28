@@ -3,5 +3,5 @@ tagline: "demo gallery"
 date: "2023-03-24"
 tags: ["photo", "macro"]
 thumbnails: ["demo-image-mushroom.jpg", "demo-stump.jpg", "demo-log.jpg"]
-is_pinned: true
+is_pinned: false
 content_type: "Project"
